@@ -1,0 +1,16 @@
+#This code allow to define the load balanacer service for our apache app
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-loadbalancer-service  # Name for LoadBalancer service
+  labels:
+    app: apache  # Label for the Service
+spec:
+  selector:
+    app: apache  # Selects pods with the label 'app: apache'
+  ports:
+    - protocol: TCP
+      port: 80         # Port exposed by the service
+      targetPort: 80   # Port exposed by the pod's container
+  type: LoadBalancer   # Exposes the service externally via cloud provider's LB

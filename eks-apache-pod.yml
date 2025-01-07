@@ -1,0 +1,12 @@
+
+#This code is for creating a pod for apache web app.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: apache-pod
+spec:
+  containers:
+  - name: apache-container
+    image: rasakadocker2024/rs-apache-webser-image:V20
+    ports:
+    - containerPort: 80
