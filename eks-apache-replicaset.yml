@@ -1,0 +1,26 @@
+
+#This is an Ansible deployment YAML file that creates a ReplicaSet to bring up three Apache Pods in a Kubernetes cluster:
+# This is the command to run or apply it: ****kubectl apply -f apache-replicaset.yml***** with apache-replicaset.yml=name of the file
+
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: apache-replicaset  # Name of the ReplicaSet
+  labels:
+    app: apache  # Labels for the ReplicaSet
+spec:
+  replicas: 2  # Number of Apache pods to create
+  selector:
+    matchLabels:
+      app: apache  # Label selector to match pods
+  template:
+    metadata:
+      labels:
+        app: apache  # Labels for the pods
+    spec:
+      containers:
+      - name: apache-container
+        image: rasakadocker2024/rs-apache-webser-image:V20  # Official Apache HTTP server image
+        ports:
+        - containerPort: 80  # Expose port 80 for HTTP
